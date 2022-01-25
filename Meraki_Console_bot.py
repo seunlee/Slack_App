@@ -27,13 +27,6 @@ base_url = "https://api.meraki.com/api/v1"
 signature_verifier = SignatureVerifier(SLACK_SIGNING_SECRET)
 request_channel_id = None
 
-
-# Helper function
-# Generic API call function
-def meraki_api(method, uri, payload=None):
-    response = requests.request(method, base_url+uri, headers=headers, data=json.dumps(payload))
-    return response
-
 # Initialize a Flask app to host the events adapter
 app = Flask(__name__)
 slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, "/slack/events", app)
